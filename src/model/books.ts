@@ -8,6 +8,12 @@ const Books = db.sequelize.define('books', {
     episode: db.Sequelize.STRING
 });
 
+function getById(req, res) {
+    return Books.findById(req.params.id).then(book => {
+        res.json(book);
+    });
+}
+
 function getAll(req, res) {
     return Books.findAll().then(bookList => {
         console.log(bookList);
@@ -28,5 +34,6 @@ function addBook(req, res) {
 
 router.get('/books', getAll);
 router.post('/books', addBook);
+router.get('/books/:id', getById);
 
 module.exports = router;
