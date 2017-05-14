@@ -1,11 +1,17 @@
 const router = require('express').Router();
 import db from './db';
 
-const Books = db.sequelize.define('books', {
+const BooksSeries = db.sequelize.define('BooksSeries', {
+    id: {type: db.Sequelize.INTEGER, primaryKey: true, autoIncrement: true},
+    title: {type: db.Sequelize.STRING, unique: true}
+});
+
+const Books = db.sequelize.define('Books', {
     id: {type: db.Sequelize.INTEGER, primaryKey: true, autoIncrement: true},
     title: db.Sequelize.STRING,
     chapter: db.Sequelize.STRING,
-    episode: db.Sequelize.STRING
+    episode: db.Sequelize.STRING,
+    bookSeriesId: db.Sequelize.INTEGER
 });
 
 function getById(req, res) {
@@ -22,13 +28,20 @@ function getAll(req, res) {
 }
 
 function addBook(req, res) {
-    return Books.create({
-        title: "Pretch phra Uma",
-        chapter: 'Prai mahakarn',
-        episode: '2'
-    }).then(function (book) {
-        console.log(book);
-        res.status(200).json(book);
+    return BooksSeries.findOrCreate({
+        where: {
+            title: req.body.seriesTitle
+        }
+    }).spread(bookSeries => {
+        let bookSeriesId = bookSeries.get({plain: true}).id;
+        Books.create({
+            title: "Pretch phra Uma",
+            chapter: 'Prai mahakarn',
+            episode: '2',
+            bookSeriesId: bookSeriesId
+        }).then(function (book) {
+            res.status(200).json(book);
+        });
     });
 }
 
