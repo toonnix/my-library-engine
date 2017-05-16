@@ -1,8 +1,8 @@
 {
   "development": {
     "dialect": "postgres",
-    "database": "my-library",
-    "username": "postgres",
+    "database": "mylibrary",
+    "username": "librarian",
     "password": "admin",
     "host": "localhost",
     "port": 5432

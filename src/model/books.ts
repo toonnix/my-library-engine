@@ -1,10 +1,8 @@
-const router = require('express').Router();
 import db from './db';
+import { Router } from 'express';
+import BooksSeries from './booksSeries';
 
-const BooksSeries = db.sequelize.define('BooksSeries', {
-    id: {type: db.Sequelize.INTEGER, primaryKey: true, autoIncrement: true},
-    title: {type: db.Sequelize.STRING, unique: true}
-});
+const router = Router();
 
 const Books = db.sequelize.define('Books', {
     id: {type: db.Sequelize.INTEGER, primaryKey: true, autoIncrement: true},
@@ -14,39 +12,33 @@ const Books = db.sequelize.define('Books', {
     bookSeriesId: db.Sequelize.INTEGER
 });
 
-function getById(req, res) {
+this.getById = (req, res) => {
     return Books.findById(req.params.id).then(book => {
         res.json(book);
     });
 }
 
-function getAll(req, res) {
+this.getAll = (req, res) => {
     return Books.findAll().then(bookList => {
         console.log(bookList);
         res.json(bookList);
     });
 }
 
-function addBook(req, res) {
-    return BooksSeries.findOrCreate({
-        where: {
-            title: req.body.seriesTitle
+this.addBook = (req, res) => {
+    return BooksSeries
+        .findOrCreate(req.body.seriesTitle)
+        .then(bookSeries => {
+            Books.create({
+                title: "Pretch phra Uma",
+                chapter: 'Prai mahakarn',
+                episode: '2',
+                bookSeriesId: bookSeries.id
+            }).then(function (book) {
+                res.status(200).json(book);
+            });
         }
-    }).spread(bookSeries => {
-        let bookSeriesId = bookSeries.get({plain: true}).id;
-        Books.create({
-            title: "Pretch phra Uma",
-            chapter: 'Prai mahakarn',
-            episode: '2',
-            bookSeriesId: bookSeriesId
-        }).then(function (book) {
-            res.status(200).json(book);
-        });
-    });
+    );
 }
 
-router.get('/books', getAll);
-router.post('/books', addBook);
-router.get('/books/:id', getById);
-
-module.exports = router;
+export default this;

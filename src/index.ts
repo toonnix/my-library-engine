@@ -10,7 +10,7 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
     extended: true
 }));
 
-app.use('/api', require('./model/books'));
+app.use('/api', require('./service/books'));
 // app.use('/api', require('app/users/router'));
 // Repeat the above line for additional model areas ("deals", "vehicles", etc)
 
