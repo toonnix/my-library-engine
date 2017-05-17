@@ -1,18 +1,9 @@
-import db from './db';
+import db from './index';
+import Books from './books';
 
 const BooksSeries = db.sequelize.define('BooksSeries', {
-    id: {type: db.Sequelize.INTEGER, primaryKey: true, autoIncrement: true},
-    title: {type: db.Sequelize.STRING, unique: true}
+    id: { type: db.Sequelize.INTEGER, primaryKey: true, autoIncrement: true },
+    title: { type: db.Sequelize.STRING, unique: true }
 });
 
-this.findOrCreate = (title) => {
-    return BooksSeries.findOrCreate({
-        where: {
-            title: title
-        }
-    }).spread(bookSeries => {
-        return bookSeries.get({plain: true});
-    });
-};
-
-export default this;
+export default BooksSeries;
