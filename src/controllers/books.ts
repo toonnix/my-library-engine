@@ -9,7 +9,7 @@ const findAll = (req: Request, res: Response) => {
 
 const addBook = (req: Request, res: Response) => {
     return BooksDao
-        .addBook(req.body.seriesTitle)
+        .addBook(req.body)
         .then(book => {
             res.status(200).json(book);
         });

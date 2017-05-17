@@ -1,6 +1,7 @@
 import Books from '../model/books';
 import BooksSeries from '../model/booksSeries';
 import BooksSeriesDao from './booksSeries';
+import Genres from '../model/genres';
 
 const findById = (id) => {
     return Books.findById(id).then(book => {
@@ -9,25 +10,31 @@ const findById = (id) => {
 }
 
 const findAll = () => {
-    return Books.findAll({ include: [BooksSeries] }).then(bookList => {
+    return Books.findAll({ include: [BooksSeries, Genres] }).then(bookList => {
         return bookList;
     });
 }
 
-const addBook = (title) => {
+const addBook = (options) => {
     return BooksSeriesDao
-        .findOrCreate(title)
+        .findOrCreate(options.seriesTitle)
         .then(bookSeriesId => {
             return Books.create({
-                title: "Pretch phra Uma",
-                chapter: 'Prai mahakarn',
-                episode: '2',
-                bookSeriesId: bookSeriesId
-            }).then(function (book) {
-                return book;
-            });
-        }
-        );
+                title: options.title,
+                chapter: options.chapter,
+                episode: options.episode,
+                bookSeriesId: bookSeriesId,
+                genres: [
+                    { genreId: 1 },
+                    { genreId: 5 }
+                ]
+            }, {
+                    include: [Genres]
+                })
+                .then(function (book) {
+                    return book;
+                });
+        });
 }
 
 const BooksDao = {
