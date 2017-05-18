@@ -16,18 +16,9 @@ const findAll = () => {
 }
 
 const addBook = (options) => {
-    return BooksSeriesDao
-        .findOrCreate(options.seriesTitle)
-        .then(bookSeriesId => {
-            options.bookSeriesId = bookSeriesId;
-            return Books.create(options)
-                .then(function (book: any) {
-                    return book.addGenre([2, 3, 4])
-                        .then(() => {
-                            return book;
-                        });
-                });
-        });
+    return Books.create(options).then(function (book: any) {
+        return book;
+    });
 }
 
 const BooksDao = {
