@@ -19,20 +19,13 @@ const addBook = (options) => {
     return BooksSeriesDao
         .findOrCreate(options.seriesTitle)
         .then(bookSeriesId => {
-            return Books.create({
-                title: options.title,
-                chapter: options.chapter,
-                episode: options.episode,
-                bookSeriesId: bookSeriesId,
-                genres: [
-                    { genreId: 1 },
-                    { genreId: 5 }
-                ]
-            }, {
-                    include: [Genres]
-                })
-                .then(function (book) {
-                    return book;
+            options.bookSeriesId = bookSeriesId;
+            return Books.create(options)
+                .then(function (book: any) {
+                    return book.addGenre([2, 3, 4])
+                        .then(() => {
+                            return book;
+                        });
                 });
         });
 }
