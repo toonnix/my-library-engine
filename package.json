@@ -4,6 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
+    "postinstall": "webpack",
     "start": "sequelize db:migrate && nodemon build/bundle.js"
   },
   "author": "Sagsun Disman",
