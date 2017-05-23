@@ -11,7 +11,7 @@ config.database = {
     database: 'mylibrary',
     username: 'librarian',
     password: 'admin',
-    host: process.env.POSTGRES_HOST || 'localhost',
+    host: process.env.process.env.DATABASE_URL || 'localhost',
     port: process.env.POSTGRES_PORT || 5432,
 };
 
