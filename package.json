@@ -4,8 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "preinstall": "webpack",
-    "start": "sequelize db:migrate && nodemon build/bundle.js"
+    "start": "webpack && sequelize db:migrate && nodemon build/bundle.js"
   },
   "author": "Sagsun Disman",
   "license": "ISC",
