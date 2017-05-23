@@ -16,7 +16,7 @@ module.exports = {
             {test: /\.tsx?$/, loader: "ts-loader"}
         ]
     },
-    watch: true,
+    watch: false,
     devServer: {
         inline:true,
         port: 8000
