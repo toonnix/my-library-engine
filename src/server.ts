@@ -13,11 +13,14 @@ const config = require('../src/config');
 // Note that there's not much logic in this file.
 // The server should be mostly "glue" code to set things up and
 // then start listening
-app.listen(process.env.PORT || 5000, config.express.ip, function (error) {
+
+const port: string = process.env.PORT || '5000';
+
+app.listen(parseInt(port), config.express.ip, function (error) {
     if (error) {
         // log.error('Unable to listen for connections', error);
         process.exit(10);
     }
     console.log('express is listening on http://' +
-        config.express.ip + ':' + (process.env.PORT || 5000));
+        config.express.ip + ':' + port);
 });
