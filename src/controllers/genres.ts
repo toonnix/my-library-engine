@@ -4,12 +4,18 @@ import GenresDto from '../dao/genres';
 const findAll = (req: Request, res: Response) => {
     return GenresDto
         .findAll()
-        .then(genreList => res.status(200).json(genreList));
+        .then(genresList => res.status(200).json(genresList));
 }
 
-const addGenre = (req: Request, res: Response) => {
+const findById = (req: Request, res: Response) => {
     return GenresDto
-        .addGenre(req.body.title)
+        .findById(req.params.id)
+        .then(book => res.status(200).json(book));
+}
+
+const create = (req: Request, res: Response) => {
+    return GenresDto
+        .create(req.body.title)
         .then(genre => {
             res.status(200).json(genre);
         });
@@ -17,7 +23,8 @@ const addGenre = (req: Request, res: Response) => {
 
 const GenresController = {
     findAll,
-    addGenre
+    findById,
+    create
 }
 
 export default GenresController;

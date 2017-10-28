@@ -12,6 +12,6 @@ module.exports = {
     },
 
     down: function (queryInterface) {
-        return queryInterface.dropTable('Genre');
+        return queryInterface.dropTable('Genres');
     }
 };

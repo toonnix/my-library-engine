@@ -3,9 +3,9 @@
 module.exports = {
     up: function (queryInterface, Sequelize) {
         return queryInterface
-            .createTable('SeriesMap', {
-                bookId: {type: Sequelize.INTEGER, unique: true},
-                bookSeriesId: Sequelize.INTEGER
+            .createTable('BooksGenres', {
+                bookId: Sequelize.INTEGER,
+                genreId: Sequelize.INTEGER
             }, {
                 timestamps: false
             });
@@ -13,6 +13,6 @@ module.exports = {
 
     down: function (queryInterface) {
         return queryInterface
-            .dropTable('SeriesMap');
+            .dropTable('BooksGenres');
     }
 };

@@ -3,9 +3,12 @@
 module.exports = {
     up: function (queryInterface, Sequelize) {
         return queryInterface
-            .createTable('BooksSeries', {
+            .createTable('Books', {
                 id: {type: Sequelize.INTEGER, primaryKey: true, autoIncrement: true},
-                title: {type: Sequelize.STRING, unique: true},
+                title: Sequelize.STRING,
+                episodeTitle: Sequelize.STRING,
+                episodeNumber: Sequelize.INTEGER,
+                seriesId: Sequelize.INTEGER,
                 createdAt: Sequelize.DATE,
                 updatedAt: Sequelize.DATE
             });
@@ -13,6 +16,6 @@ module.exports = {
 
     down: function (queryInterface) {
         return queryInterface
-            .dropTable('BooksSeries');
+            .dropTable('Books');
     }
 };

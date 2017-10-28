@@ -1,5 +1,5 @@
 import Genres from '../model/genres';
-import Books from '../model/book';
+import Books from '../model/books';
 
 const findById = (id) => {
     return Genres.findById(id, { include: [Books] }).then(book => {
@@ -8,12 +8,12 @@ const findById = (id) => {
 }
 
 const findAll = () => {
-    return Genres.findAll({ include: [Books] }).then(bookList => {
+    return Genres.findAll().then(bookList => {
         return bookList;
     });
 }
 
-const addGenre = (title) => {
+const create = (title) => {
     return Genres.create({
         title: title
     }).then(genre => {
@@ -24,7 +24,7 @@ const addGenre = (title) => {
 const GenresDto = {
     findById,
     findAll,
-    addGenre
+    create
 }
 
 export default GenresDto;
