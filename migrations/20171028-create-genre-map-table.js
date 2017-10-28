@@ -3,7 +3,7 @@
 module.exports = {
     up: function (queryInterface, Sequelize) {
         return queryInterface
-            .createTable('GenreMaps', {
+            .createTable('GenresMap', {
                 bookId: Sequelize.INTEGER,
                 genreId: Sequelize.INTEGER
             }, {
@@ -13,6 +13,6 @@ module.exports = {
 
     down: function (queryInterface) {
         return queryInterface
-            .dropTable('GenreMap');
+            .dropTable('GenresMap');
     }
 };

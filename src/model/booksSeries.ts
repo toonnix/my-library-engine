@@ -1,9 +1,9 @@
 import db from './db';
 import * as Sequelize from 'sequelize'
 
-const BooksSeries: Sequelize.model = db.sequelize.define('BooksSeries', {
-        id: {type: db.Sequelize.INTEGER, primaryKey: true, autoIncrement: true},
-        title: {type: db.Sequelize.STRING, unique: true}
+const BooksSeries: Sequelize.model = db.define('BooksSeries', {
+        id: {type: Sequelize.INTEGER, primaryKey: true, autoIncrement: true},
+        title: {type: Sequelize.STRING, unique: true}
     }
 );
 

@@ -1,11 +1,10 @@
-import db from './index';
-import Books from './genres';
-import GenreMaps from './genreMaps';
+import db from './db';
+import * as Sequelize from 'sequelize';
 
-const Genres = db.sequelize.define('Genres', {
-    id: { type: db.Sequelize.INTEGER, primaryKey: true, autoIncrement: true },
-    title: { type: db.Sequelize.STRING, unique: true },
-    description: db.Sequelize.STRING
+const Genres = db.define('Genres', {
+    id: { type: Sequelize.INTEGER, primaryKey: true, autoIncrement: true },
+    title: { type: Sequelize.STRING, unique: true },
+    description: Sequelize.STRING
 }, {
     timestamps: false
 });

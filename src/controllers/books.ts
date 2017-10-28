@@ -1,7 +1,7 @@
 import { Request, Response } from 'express'
 import BooksDao from '../dao/books'
 import BooksSeriesDao from '../dao/booksSeries';
-import Books from '../model/books';
+import Books from '../model/book';
 
 const findAll = (req: Request, res: Response) => {
     return BooksDao

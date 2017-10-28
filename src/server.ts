@@ -19,5 +19,5 @@ app.listen(process.env.PORT || 5000, config.express.ip, function (error) {
         process.exit(10);
     }
     console.log('express is listening on http://' +
-        config.express.ip + ':' + process.env.PORT || 5000);
+        config.express.ip + ':' + (process.env.PORT || 5000));
 });

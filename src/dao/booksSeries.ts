@@ -1,5 +1,5 @@
 import BooksSeries from '../model/booksSeries';
-import Books from '../model/books';
+import Books from '../model/book';
 
 const findAll = () => {
     return BooksSeries.findAll({ include: [Books] }).then(seriesList => {

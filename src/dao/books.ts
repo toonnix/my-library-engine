@@ -1,6 +1,5 @@
-import Books from '../model/books';
+import Books from '../model/book';
 import BooksSeries from '../model/booksSeries';
-import BooksSeriesDao from './booksSeries';
 import Genres from '../model/genres';
 
 const findById = (id) => {

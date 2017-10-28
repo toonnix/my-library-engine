@@ -1,5 +1,5 @@
 import Genres from '../model/genres';
-import Books from '../model/books';
+import Books from '../model/book';
 
 const findById = (id) => {
     return Genres.findById(id, { include: [Books] }).then(book => {
