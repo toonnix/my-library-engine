@@ -13,6 +13,9 @@ config.database = {
     password: 'admin',
     host: process.env.DATABASE_URL || 'localhost',
     port: process.env.POSTGRES_PORT || 5432,
+    define: {
+        freezeTableName: true
+    }
 };
 
 if (PRODUCTION) {
