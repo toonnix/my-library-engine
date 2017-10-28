@@ -20,12 +20,15 @@ config.database = {
 
 if (PRODUCTION) {
     config.database = {
-        "dialect": "postgres",
-        "database": "dund0u3u59u1v",
-        "username": "mhifnkruoxymho",
-        "password": "6a2fc6364e279637a362c51ea08c168de688fb3e1e60e866aa144b26be573e72",
-        "host": "ec2-54-83-26-65.compute-1.amazonaws.com",
-        "port": 5432
+        dialect: "postgres",
+        database: "dund0u3u59u1v",
+        username: "mhifnkruoxymho",
+        password: "6a2fc6364e279637a362c51ea08c168de688fb3e1e60e866aa144b26be573e72",
+        host: "ec2-54-83-26-65.compute-1.amazonaws.com",
+        port: 5432,
+        define: {
+            freezeTableName: true
+        }
     }
     config.express.ip = '0.0.0.0'
 }
